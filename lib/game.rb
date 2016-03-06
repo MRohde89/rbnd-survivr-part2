@@ -19,15 +19,13 @@ class Game
     @tribes = []
   end
 
-  def merge(merge_kind)
-    if merge_kind == 'combined_tribe'
-      then
-        survivrs = []
-        @tribes.each do |tribe|
-          survivrs = survivrs + tribe.members
-      end
-      return @tribes = Tribe.new(name: 'merged', members: survivrs)
+  def merge(merge_name)
+      @merge_name = merge_name
+      survivrs = []
+      @tribes.each do |tribe|
+        survivrs = survivrs + tribe.members
     end
+    return Tribe.new(name: merge_name, members: survivrs)
   end
 
   def individual_immunity_challenge
