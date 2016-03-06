@@ -22,29 +22,43 @@ String.create_colors
 
 # This is where you will write your code for the three phases
 def phase_one
+  # start with empty elimination array
   council_elimination = []
+  # loop 8 times (game mechanics)
   8.times do
+    # tribe which has lost the challenge
     loosing_tribe = @borneo.immunity_challenge
+    # tribal council for the loosing tribe will eliminate one participants
     council_elimination << loosing_tribe.tribal_council
   end
+  # return all eliminations (used for the test szenario)
   return council_elimination.length
 end
 
 def phase_two
+  # start with empty elimination array
   phase_two_elimination = []
+  # loop 3 times (game mechanics)
   3.times do
+    # get the winner of the immunity_challenge
     immunity_winner = @merge_tribe.individual_immunity_challenge
+    # eliminate one participant ( but not the immunity_winner)
     phase_two_elimination << @merge_tribe.tribal_council(immune: immunity_winner)
   end
+  # return used for testing szenario
   return phase_two_elimination.length
 
 end
 
 def phase_three
+  # loop 7 times (game mechanics)
   7.times do
+    # immunity_winner will be choosen
     immunity_winner = @merge_tribe.individual_immunity_challenge
+    # add elimnated member to the jury
     @jury.add_member(@merge_tribe.tribal_council(immune: immunity_winner))
   end
+  # return used for testing szenario
   return @jury.members.length
 end
 

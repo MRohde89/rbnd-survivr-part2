@@ -5,6 +5,7 @@ class Contestant
     @name = name
   end
 
+  # will return the name of the Contestant if #{Contestant} gets called
 	def to_s
 		@name
 	end
